@@ -1,0 +1,339 @@
+.page {
+  position: relative;
+  min-height: 100vh;
+  padding: clamp(16px, 4vw, 40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(
+    circle at top,
+    #ffeef7 0,
+    #fde2f4 40%,
+    #fdf2ff 70%,
+    #f9fafb 100%
+  );
+  overflow: hidden;
+}
+
+.pattern {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 18px;
+  align-content: stretch;
+  justify-items: center;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(18px, 2.6vw, 26px);
+  color: #f472b6;
+  opacity: 0.28;
+  pointer-events: none;
+  -webkit-user-select: none;
+  user-select: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.word {
+  --scale: 1;
+  opacity: 0.75;
+  animation: pretty-rain 14s linear infinite;
+}
+
+.word:nth-child(2n) {
+  --scale: 0.85;
+  opacity: 0.5;
+}
+
+.word:nth-child(3n) {
+  --scale: 1.25;
+  opacity: 0.85;
+  animation-duration: 18s;
+  animation-delay: -4s;
+}
+
+.word:nth-child(4n) {
+  --scale: 1.05;
+  opacity: 0.65;
+  animation-duration: 22s;
+  animation-delay: -8s;
+}
+
+.word:nth-child(5n) {
+  --scale: 0.95;
+  opacity: 0.6;
+  animation-duration: 26s;
+  animation-delay: -12s;
+}
+
+.word:nth-child(7n) {
+  --scale: 1.35;
+  opacity: 0.9;
+  animation-duration: 30s;
+  animation-delay: -16s;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(540px, 100%);
+  padding: clamp(22px, 4vw, 32px) clamp(18px, 4vw, 28px) clamp(18px, 3vw, 26px);
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.98),
+    rgba(255, 240, 245, 0.98)
+  );
+  box-shadow: 0 24px 80px rgba(15, 23, 42, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0 0 24px;
+  font-size: clamp(0.92rem, 2.4vw, 1.02rem);
+  line-height: 1.7;
+  color: #4b5563;
+  text-align: center;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.68rem, 1.8vw, 0.85rem) clamp(1.4rem, 3.4vw, 1.9rem);
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2.4vw, 1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 12px 30px rgba(248, 113, 113, 0.45);
+  transition:
+    transform 0.16s ease,
+    box-shadow 0.16s ease,
+    filter 0.16s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 16px 40px rgba(248, 113, 113, 0.6);
+  filter: brightness(1.03);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 10px 25px rgba(248, 113, 113, 0.4);
+}
+
+.button:focus-visible {
+  outline: 2px solid #fb7185;
+  outline-offset: 3px;
+}
+
+.messageWrapper {
+  margin-top: 24px;
+  opacity: 0;
+  transform: translateY(18px) scale(0.97);
+  pointer-events: none;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.messageVisible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.messageCard {
+  padding: 20px 18px 18px;
+  border-radius: 20px;
+  background: linear-gradient(
+    135deg,
+    rgba(254, 242, 242, 0.98),
+    rgba(254, 249, 195, 0.96)
+  );
+  border: 1px solid rgba(254, 202, 202, 0.9);
+  box-shadow: 0 18px 45px rgba(248, 113, 113, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.heart {
+  position: relative;
+  width: clamp(52px, 6vw, 68px);
+  height: clamp(52px, 6vw, 68px);
+  transform: rotate(-45deg);
+  background: linear-gradient(135deg, #fb7185, #f97316);
+  box-shadow: 0 12px 30px rgba(248, 113, 113, 0.7);
+  border-radius: 18px;
+  animation: pulse 1.4s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: '';
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart::before {
+  top: -32px;
+  left: 0;
+}
+
+.heart::after {
+  left: 32px;
+  top: 0;
+}
+
+.messageText {
+  margin: 0;
+  font-size: clamp(0.92rem, 2.5vw, 1.02rem);
+  line-height: 1.7;
+  text-align: center;
+  color: #374151;
+}
+
+@keyframes pretty-rain {
+  0% {
+    transform: translateY(-120vh) scale(var(--scale));
+  }
+  100% {
+    transform: translateY(120vh) scale(var(--scale));
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(0.96);
+    box-shadow: 0 10px 26px rgba(248, 113, 113, 0.6);
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.05);
+    box-shadow: 0 16px 42px rgba(248, 113, 113, 0.85);
+  }
+  100% {
+    transform: rotate(-45deg) scale(0.96);
+    box-shadow: 0 10px 26px rgba(248, 113, 113, 0.6);
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 16px;
+  }
+
+  .content {
+    padding: 20px 18px 18px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .button {
+    width: 100%;
+  }
+
+  .pattern {
+    font-size: 20px;
+    gap: 24px;
+  }
+
+  .heart {
+    width: 50px;
+    height: 50px;
+  }
+
+  .heart::before,
+  .heart::after {
+    width: 50px;
+    height: 50px;
+  }
+
+  .heart::before {
+    top: -27px;
+  }
+
+  .heart::after {
+    left: 27px;
+  }
+}
+
+@media (max-width: 380px) {
+  .content {
+    padding: 18px 14px 16px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle,
+  .messageText {
+    font-size: 0.86rem;
+  }
+
+  .button {
+    width: 100%;
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .content {
+    max-width: 620px;
+    padding: 36px 32px 30px;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .subtitle,
+  .messageText {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .page {
+    align-items: flex-start;
+  }
+
+  .content {
+    margin-top: 32px;
+    padding: 22px 22px 20px;
+  }
+}
