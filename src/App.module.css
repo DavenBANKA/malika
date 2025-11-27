@@ -112,9 +112,11 @@
 }
 
 .button {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
+  width: fit-content;
+  margin: 0 auto;
   padding: clamp(0.68rem, 1.8vw, 0.85rem) clamp(1.4rem, 3.4vw, 1.9rem);
   border-radius: 999px;
   border: none;

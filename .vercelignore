@@ -1,8 +1,11 @@
-.git
+# Files and folders not needed by Vercel build upload
 node_modules
-dist
+.git
 .vscode
-*.log
 .DS_Store
-.env*
-.vercel
+npm-debug.log*
+yarn-error.log*
+*.local
+
+# Build outputs created on Vercel, no need to upload
+/dist
